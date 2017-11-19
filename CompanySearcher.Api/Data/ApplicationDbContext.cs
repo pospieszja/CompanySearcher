@@ -2,7 +2,7 @@ using System.Data.SqlClient;
 using CompanySearcher.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace CompanySearcher.Api.Infrastracture
+namespace CompanySearcher.Api.Data
 {
     public class ApplicationDbContext: DbContext
     {    
