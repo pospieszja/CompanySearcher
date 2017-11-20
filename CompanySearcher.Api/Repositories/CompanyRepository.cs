@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CompanySearcher.Api.Data;
 using CompanySearcher.Api.Models;
 using CompanySearcher.Api.Repositories.Interfaces;
@@ -13,9 +14,12 @@ namespace CompanySearcher.Api.Repositories
         {
             _context = context;
         }
-        public IEnumerable<Company> GetAll()
+
+        public Task<Company> GetByCompanyCodeAsync(string companyCode)
         {
-            return _context.Companies.Include(e=>e.Address);
+            return _context.Companies
+                    .Include(e=>e.Address)
+                    .SingleOrDefaultAsync(x=>x.KRS == companyCode || x.NIP == companyCode || x.REGON == companyCode);
         }
     }
 }

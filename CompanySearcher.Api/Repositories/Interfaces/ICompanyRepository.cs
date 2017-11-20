@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CompanySearcher.Api.Models;
 
 namespace CompanySearcher.Api.Repositories.Interfaces
 {
     public interface ICompanyRepository
     {
-        IEnumerable<Company> GetAll();
+        Task<Company> GetByCompanyCodeAsync(string companyCode);
     }
 }

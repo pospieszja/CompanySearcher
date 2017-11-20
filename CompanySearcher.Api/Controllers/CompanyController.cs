@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CompanySearcher.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,11 +13,17 @@ namespace CompanySearcher.Api.Controllers
         {
             _companyService = companyService;
         }
-        // GET api/values
-        public IActionResult Get()
+
+        [HttpGet("{companyCode}")]
+        public async Task<IActionResult> Get(string companyCode)
         {
-            var companies = _companyService.GetAll();
-            return Ok(companies);
-        } 
+            var company = await _companyService.GetByCompanyCodeAsync(companyCode);
+            if (company == null)
+            {
+                return NotFound();
+            }
+
+            return Json(company);
+        }        
     }
 }
