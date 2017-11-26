@@ -4,12 +4,12 @@
       <a class="navbar-brand" href="#">Company Searcher</a>
     </nav>
     <div class="container">
-      <form v-on:submit.prevent class="get-company-code">
+      <form  class="get-company-code">
         <div class="form-group">
           <label>KRS/NIP/REGON</label>
           <input type="text" class="form-control" v-model="companyCode" id="companyCode">
         </div>
-        <button class="btn btn-primary" v-on:click="fetch">Pobierz dane</button>
+        <button class="btn btn-primary" v-on:click.prevent="fetch">Pobierz dane</button>
       </form>
       <form>
         <div class="form-group">
