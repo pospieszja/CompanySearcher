@@ -11,14 +11,12 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
 import Form from './components/Form'
 import Company from './components/Company'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
     Form,
     Company
   },
