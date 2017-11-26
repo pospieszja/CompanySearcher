@@ -4,12 +4,12 @@
       <a class="navbar-brand" href="#">Company Searcher</a>
     </nav>
     <div class="container">
-      <form class="get-company-code">
+      <form v-on:submit.prevent class="get-company-code">
         <div class="form-group">
           <label>KRS/NIP/REGON</label>
-          <input type="text" class="form-control" id="companyCode">
+          <input type="text" class="form-control" v-model="companyCode" id="companyCode">
         </div>
-        <button class="btn btn-primary">Pobierz dane</button>
+        <button class="btn btn-primary" v-on:click="fetch">Pobierz dane</button>
       </form>
       <form>
         <div class="form-group">
@@ -29,11 +29,11 @@
         <div class="form-group">
           <div>
             <label>Kod pocztowy</label>
-            <span class="form-control">Kod pocztowy</span>
+            <span class="form-control">{{companyCode}}</span>
           </div>
           <div>
             <label>Miasto</label>
-            <span class="form-control">Miasto</span>
+            <span class="form-control">{{post.title}}</span>
           </div>
         </div>        
       </form>
@@ -48,6 +48,20 @@ export default {
   name: 'app',
   data () {
     return {
+      post: "",
+      companyCode: ""
+    }
+  },
+  methods: {
+    fetch() {
+axios.get(`http://jsonplaceholder.typicode.com/posts/`+this.companyCode)
+    .then(response => {
+      // JSON responses are automatically parsed.
+      this.post = response.data
+    })
+    .catch(e => {
+      this.errors.push(e)
+    })
     }
   }
 }
