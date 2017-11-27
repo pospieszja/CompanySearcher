@@ -3,13 +3,13 @@ using System.Threading.Tasks;
 using CompanySearcher.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CompanySearcher.Api.Controllers
+namespace CompaniesSearcher.Api.Controllers
 {
     [Route("api/[controller]")]
-    public class CompanyController: Controller
+    public class CompaniesController: Controller
     {
         ICompanyService _companyService;
-        public CompanyController(ICompanyService companyService)
+        public CompaniesController(ICompanyService companyService)
         {
             _companyService = companyService;
         }
