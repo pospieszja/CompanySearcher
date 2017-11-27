@@ -9,5 +9,55 @@ namespace CompanySearcher.Api.Models
         public string StreetNumber { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
+
+        protected Address()
+        {
+
+        }
+        
+        public Address(string street, string streetNumber, string city, string postalCode)
+        {
+            SetStreet(street);
+        }
+
+        private void SetStreet(string street)
+        {
+            if (String.IsNullOrWhiteSpace(street))
+            {
+                throw new Exception("Street can't be empty.");
+            }
+
+            Street = street;
+        }
+
+        private void SetStreetNumber(string streetNumber)
+        {
+            if (String.IsNullOrWhiteSpace(streetNumber))
+            {
+                throw new Exception("StreetNumber can't be empty.");
+            }
+
+            StreetNumber = streetNumber;
+        }
+
+        private void SetPostalCode(string postalCode)
+        {
+            if (String.IsNullOrWhiteSpace(postalCode))
+            {
+                throw new Exception("PostalCode can't be empty.");
+            }
+
+            PostalCode = postalCode;
+        }     
+
+        private void SetCity(string city)
+        {
+            if (String.IsNullOrWhiteSpace(city))
+            {
+                throw new Exception("City can't be empty.");
+            }
+
+            City = city;
+        }             
     }
 }
