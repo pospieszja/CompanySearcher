@@ -14,8 +14,8 @@ namespace CompaniesSearcher.Api.Controllers
             _companyService = companyService;
         }
 
-        [HttpGet("{companyCode}")]
-        public async Task<IActionResult> Get(string companyCode)
+        [HttpGet]
+        public async Task<IActionResult> Get([FromQuery]string companyCode)
         {
             var company = await _companyService.GetByCompanyCodeAsync(companyCode);
             if (company == null)
