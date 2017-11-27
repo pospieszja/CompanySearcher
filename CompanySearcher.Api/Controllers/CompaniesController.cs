@@ -22,7 +22,6 @@ namespace CompaniesSearcher.Api.Controllers
             {
                 return NotFound();
             }
-
             return Json(company);
         }        
     }

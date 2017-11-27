@@ -11,8 +11,8 @@ using System;
 namespace CompanySearcher.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171119194124_Add Name for Company")]
-    partial class AddNameforCompany
+    [Migration("20171127210159_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

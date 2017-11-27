@@ -17,7 +17,11 @@ namespace CompanySearcher.Api.Models
         
         public Address(string street, string streetNumber, string city, string postalCode)
         {
+            Id = Guid.NewGuid();
             SetStreet(street);
+            SetStreetNumber(streetNumber);
+            SetPostalCode(postalCode);
+            SetCity(city);
         }
 
         private void SetStreet(string street)

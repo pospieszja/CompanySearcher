@@ -5,7 +5,7 @@ using CompanySearcher.Api.Models;
 
 namespace CompanySearcher.Api.Data
 {
-    public class DbInitializer: IDbInitializer
+    public class DbInitializer : IDbInitializer
     {
         ApplicationDbContext _context;
         public DbInitializer(ApplicationDbContext context)
@@ -15,20 +15,22 @@ namespace CompanySearcher.Api.Data
 
         public void Initialize()
         {
-            if(!_context.Companies.Any())
+            if (!_context.Companies.Any())
             {
-                var address = new Address(){
-                    City = "Warsaw", Street="Marszałkowska", StreetNumber="143/7", PostalCode="00-500"
-                };
+                var address = new Address("Postępu", "14", "Warszawa", "02-676");
+                var company = new Company("SAMSUNG ELECTRONICS POLSKA SP Z O O", "128080", "5261044039", "11612810", address);
+                _context.Companies.Add(company);
 
-                var companies = new List<Company>() {
-                    new Company {Id = Guid.NewGuid(), Name = "Company1234", KRS = "1234KRS", REGON ="1234REGON",NIP="1234NIP", Address = address  },
-                    new Company {Id = Guid.NewGuid(), Name = "Company4567", KRS = "4567KRS", REGON ="4567REGON",NIP="4567NIP", Address = address  }
-                };
+                address = new Address("Wołoska 22", "22", "Warszawa", "02-675");
+                company = new Company("LG ELECTRONICS POLSKA SP Z O O", "121072", "521-22-14-808", "12449587", address);
+                _context.Companies.Add(company);
 
-                _context.Companies.AddRange(companies);
+                address = new Address("Ogrodowa", "58", "Warszawa", "00-876");
+                company = new Company("SONY EUROPE LIMITED (SP Z O O) ODDZIAŁ W POLSCE", "377489", "108-00-10-359", "142798947", address);
+                _context.Companies.Add(company);                
+
                 _context.SaveChanges();
-                }
             }
         }
     }
+}

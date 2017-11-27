@@ -31,6 +31,7 @@ namespace CompanySearcher.Api.Migrations
                     AddressId = table.Column<Guid>(nullable: true),
                     KRS = table.Column<string>(nullable: true),
                     NIP = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
                     REGON = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
