@@ -10,7 +10,7 @@ namespace CompanySearcher.Api.Data
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<Company, CompanyVieModel>()
+                    cfg.CreateMap<Company, CompanyViewModel>()
                         .ForMember(dest=>dest.City, opt=> opt.MapFrom(src=>src.Address.City))
                         .ForMember(dest=>dest.PostalCode, opt=> opt.MapFrom(src=>src.Address.PostalCode))
                         .ForMember(dest=>dest.Street, opt=> opt.MapFrom(src=>src.Address.Street))

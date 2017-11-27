@@ -18,10 +18,10 @@ namespace CompanySearcher.Api.Services
             _mapper = mapper;
         }
 
-        public async Task<CompanyVieModel> GetByCompanyCodeAsync(string companyCode)
+        public async Task<CompanyViewModel> GetByCompanyCodeAsync(string companyCode)
         {
             var company = await _repository.GetByCompanyCodeAsync(companyCode);
-            return _mapper.Map<Company,CompanyVieModel>(company);
+            return _mapper.Map<Company,CompanyViewModel>(company);
         }
     }
 }

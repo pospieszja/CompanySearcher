@@ -1,6 +1,6 @@
 namespace CompanySearcher.Api.Models.DTO
 {
-    public class CompanyVieModel
+    public class CompanyViewModel
     {
         public string Name { get; set; }
         public string Street { get; set; }
