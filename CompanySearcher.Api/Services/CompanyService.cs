@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using CompanySearcher.Api.Models;
@@ -19,7 +20,8 @@ namespace CompanySearcher.Api.Services
         }
 
         public async Task<CompanyViewModel> GetByCompanyCodeAsync(string companyCode)
-        {
+        {   
+            companyCode = Regex.Replace(companyCode, @"[^0-9]", "");
             var company = await _repository.GetByCompanyCodeAsync(companyCode);
             return _mapper.Map<Company,CompanyViewModel>(company);
         }
