@@ -6,6 +6,6 @@ namespace CompanySearcher.Api.Services.Interfaces
 {
     public interface ICompanyService
     {
-        Task<CompanyDto> GetByCompanyCodeAsync(string companyCode);
+        Task<CompanyVieModel> GetByCompanyCodeAsync(string companyCode);
     }
 }
