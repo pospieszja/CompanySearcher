@@ -4,86 +4,100 @@
       <a class="navbar-brand" href="#">Company Searcher</a>
     </nav>
     <div class="container">
-      <form  class="get-company-code">
+
+      <form class="get-company-code">
         <div class="form-group">
           <label>KRS/NIP/REGON</label>
           <input type="text" class="form-control" v-model="companyCode" id="companyCode">
         </div>
         <button class="btn btn-primary" v-on:click.prevent="fetch">Pobierz dane</button>
       </form>
+
       <div v-if="notFound" class="alert alert-danger">
         <span>Nie znaleziono danych !!!</span>
-      </div>      
-      <form class="company-result">
-        <div class="form-group">
-          <label class="control-label">Nazwa</label>
-          <span class="form-control">{{ company.name }}</span>
-        </div>
-        <div class="form-group address">
-          <div>
-            <label>Ulica</label>
-            <span class="form-control">{{ company.street }}</span>
-          </div>
-          <div>
-            <label>Nr</label>
-            <span class="form-control">{{ company.streetNumber }}</span>
+      </div>    
+
+      <div v-if="fetched" class="company-data">
+        <div class="row">
+          <div class="col-xs-12">
+            <label class="col-xs-12">Nazwa</label>
+            <input type="text" class="col-xs-12" v-model="company.name">
           </div>
         </div>
-        <div class="form-group address">
-          <div>
-            <label>Kod pocztowy</label>
-            <span class="form-control">{{ company.postalCode }}</span>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-10">
+            <label class="col-xs-12">Ulica</label>
+            <input type="text" class="col-xs-12" v-model="company.street">
           </div>
-          <div>
-            <label>Miasto</label>
-            <span class="form-control">{{ company.city }}</span>
+          <div class="col-xs-12 col-md-2">
+            <label class="col-xs-12">Nr</label>
+            <input type="text" class="col-xs-12" v-model="company.streetNumber">
           </div>
-        </div>        
-      </form>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-4">
+            <label class="col-xs-12">Kod pocztowy</label>
+            <input type="text" class="col-xs-12" v-model="company.postalCode">
+          </div>
+          <div class="col-xs-12 col-md-8">
+            <label class="col-xs-12">Miasto</label>
+            <input type="text" class="col-xs-12 postal-code" v-model="company.city">
+          </div>
+       </div>
+      </div>
     </div>    
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-  name: 'app',
-  data () {
+  name: "app",
+  data() {
     return {
-      company: {name: "", street: "", streetNumber: "", city: "", postalCode: "" },
+      company: {
+        name: "",
+        street: "",
+        streetNumber: "",
+        city: "",
+        postalCode: ""
+      },
       companyCode: "",
-      notFound: false
-    }
+      notFound: false,
+      fetched: false
+    };
   },
   methods: {
     resetModel() {
-      this.company.name = ""
-      this.company.street = ""
-      this.company.streetNumber = ""
-      this.company.city = ""
-      this.company.postalCode = ""
+      this.company.name = "";
+      this.company.street = "";
+      this.company.streetNumber = "";
+      this.company.city = "";
+      this.company.postalCode = "";
     },
 
     fetch() {
-      this.resetModel()
-      axios.get('http://localhost:5000/api/companies?companycode='+this.companyCode)
-            .then(response => {
-              this.company = response.data
-              this.notFound = false
-      })
-      .catch(e => {
-        this.notFound = true
-    })
+      this.resetModel();
+      this.fetched = true;
+      axios
+        .get(
+          "http://localhost:5000/api/companies?companycode=" + this.companyCode
+        )
+        .then(response => {
+          this.company = response.data;
+          this.notFound = false;
+        })
+        .catch(e => {
+          this.notFound = true;
+        });
     }
   }
-}
+};
 </script>
 
 <style>
-input {
-  max-width: 300px;
-}
 .navbar {
   background-color: #e3f2fd;
   margin-bottom: 50px;
@@ -91,14 +105,14 @@ input {
 .get-company-code {
   margin-bottom: 50px;
 }
-.company-result {
-  max-width: 400px;
-  display: flex;
-  flex-direction: row;
+.company-data, form {
+  max-width: 550px;
+}
+.company-data input {
+  margin-bottom: 10px;
 }
 
-.address > div {
-  flex-direction: column;
-  margin: 10px;
+.company-data input {
+  padding: 3px;
 }
 </style>
