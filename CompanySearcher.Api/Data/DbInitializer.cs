@@ -22,11 +22,11 @@ namespace CompanySearcher.Api.Data
                 _context.Companies.Add(company);
 
                 address = new Address("Wołoska 22", "22", "Warszawa", "02-675");
-                company = new Company("LG ELECTRONICS POLSKA SP Z O O", "121072", "521-22-14-808", "12449587", address);
+                company = new Company("LG ELECTRONICS POLSKA SP Z O O", "121072", "5212214808", "12449587", address);
                 _context.Companies.Add(company);
 
                 address = new Address("Ogrodowa", "58", "Warszawa", "00-876");
-                company = new Company("SONY EUROPE LIMITED (SP Z O O) ODDZIAŁ W POLSCE", "377489", "108-00-10-359", "142798947", address);
+                company = new Company("SONY EUROPE LIMITED (SP Z O O) ODDZIAŁ W POLSCE", "377489", "1080010359", "142798947", address);
                 _context.Companies.Add(company);                
 
                 _context.SaveChanges();
