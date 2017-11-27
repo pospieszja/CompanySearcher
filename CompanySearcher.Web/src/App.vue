@@ -8,7 +8,7 @@
       <form class="get-company-code">
         <div class="form-group">
           <label>KRS/NIP/REGON</label>
-          <input type="text" class="form-control" v-model="companyCode" id="companyCode">
+          <input type="text" class="form-control" v-model="companyCode" v-on:input="fetch" id="companyCode">
         </div>
         <button class="btn btn-primary" v-on:click.prevent="fetch">Pobierz dane</button>
       </form>
@@ -69,6 +69,7 @@ export default {
       fetched: false
     };
   },
+  
   methods: {
     resetModel() {
       this.company.name = "";
@@ -77,7 +78,6 @@ export default {
       this.company.city = "";
       this.company.postalCode = "";
     },
-
     fetch() {
       this.resetModel();
       this.fetched = true;
