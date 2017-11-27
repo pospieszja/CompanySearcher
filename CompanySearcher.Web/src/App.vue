@@ -11,29 +11,32 @@
         </div>
         <button class="btn btn-primary" v-on:click.prevent="fetch">Pobierz dane</button>
       </form>
+      <div v-if="notFound" class="alert alert-danger">
+        <span>Nie znaleziono danych !!!</span>
+      </div>      
       <form>
         <div class="form-group">
           <label class="control-label">Nazwa</label>
-          <span class="form-control">Firma</span>
+          <span class="form-control">{{ company.name }}</span>
         </div>
         <div class="form-group">
           <div>
             <label>Ulica</label>
-            <span class="form-control">Ulica</span>
+            <span class="form-control">{{ company.street }}</span>
           </div>
           <div>
             <label>Nr</label>
-            <span class="form-control">Nr</span>
+            <span class="form-control">{{ company.streetNumber }}</span>
           </div>
         </div>
         <div class="form-group">
           <div>
             <label>Kod pocztowy</label>
-            <span class="form-control">{{companyCode}}</span>
+            <span class="form-control">{{ company.postalCode }}</span>
           </div>
           <div>
             <label>Miasto</label>
-            <span class="form-control">{{post.title}}</span>
+            <span class="form-control">{{ company.city }}</span>
           </div>
         </div>        
       </form>
@@ -48,19 +51,29 @@ export default {
   name: 'app',
   data () {
     return {
-      post: "",
-      companyCode: ""
+      company: {name: "", street: "", streetNumber: "", city: "", postalCode: "" },
+      companyCode: "",
+      notFound: false
     }
   },
   methods: {
+    resetModel() {
+      this.company.name = ""
+      this.company.street = ""
+      this.company.streetNumber = ""
+      this.company.city = ""
+      this.company.postalCode = ""
+    },
+
     fetch() {
-axios.get(`http://jsonplaceholder.typicode.com/posts/`+this.companyCode)
-    .then(response => {
-      // JSON responses are automatically parsed.
-      this.post = response.data
-    })
-    .catch(e => {
-      this.errors.push(e)
+      this.resetModel()
+      axios.get('http://localhost:5000/api/companies?companycode='+this.companyCode)
+            .then(response => {
+              this.company = response.data
+              this.notFound = false
+      })
+      .catch(e => {
+        this.notFound = true
     })
     }
   }
