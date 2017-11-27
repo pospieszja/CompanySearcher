@@ -8,7 +8,7 @@ namespace CompaniesSearcher.Api.Controllers
     [Route("api/[controller]")]
     public class CompaniesController: Controller
     {
-        ICompanyService _companyService;
+        private readonly ICompanyService _companyService;
         public CompaniesController(ICompanyService companyService)
         {
             _companyService = companyService;

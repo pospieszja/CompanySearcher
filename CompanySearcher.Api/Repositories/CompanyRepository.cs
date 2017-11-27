@@ -9,7 +9,7 @@ namespace CompanySearcher.Api.Repositories
 {
     public class CompanyRepository : ICompanyRepository
     {
-        ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         public CompanyRepository(ApplicationDbContext context)
         {
             _context = context;

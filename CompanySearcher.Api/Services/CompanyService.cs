@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using CompanySearcher.Api.Models;
+using CompanySearcher.Api.Models.DTO;
 using CompanySearcher.Api.Repositories.Interfaces;
 using CompanySearcher.Api.Services.Interfaces;
 
@@ -8,15 +10,18 @@ namespace CompanySearcher.Api.Services
 {
     public class CompanyService : ICompanyService
     {
-        ICompanyRepository _repository;
-        public CompanyService(ICompanyRepository repository)
+        private readonly ICompanyRepository _repository;
+        private readonly IMapper _mapper;
+        public CompanyService(ICompanyRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public Task<Company> GetByCompanyCodeAsync(string companyCode)
+        public async Task<CompanyDto> GetByCompanyCodeAsync(string companyCode)
         {
-           return _repository.GetByCompanyCodeAsync(companyCode);
+            var company = await _repository.GetByCompanyCodeAsync(companyCode);
+            return _mapper.Map<Company,CompanyDto>(company);
         }
     }
 }

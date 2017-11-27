@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CompanySearcher.Api.Models;
+using CompanySearcher.Api.Models.DTO;
 
 namespace CompanySearcher.Api.Services.Interfaces
 {
     public interface ICompanyService
     {
-        Task<Company> GetByCompanyCodeAsync(string companyCode);
+        Task<CompanyDto> GetByCompanyCodeAsync(string companyCode);
     }
 }
