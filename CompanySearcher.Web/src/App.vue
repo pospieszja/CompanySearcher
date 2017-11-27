@@ -14,12 +14,12 @@
       <div v-if="notFound" class="alert alert-danger">
         <span>Nie znaleziono danych !!!</span>
       </div>      
-      <form>
+      <form class="company-result">
         <div class="form-group">
           <label class="control-label">Nazwa</label>
           <span class="form-control">{{ company.name }}</span>
         </div>
-        <div class="form-group">
+        <div class="form-group address">
           <div>
             <label>Ulica</label>
             <span class="form-control">{{ company.street }}</span>
@@ -29,7 +29,7 @@
             <span class="form-control">{{ company.streetNumber }}</span>
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group address">
           <div>
             <label>Kod pocztowy</label>
             <span class="form-control">{{ company.postalCode }}</span>
@@ -90,5 +90,15 @@ input {
 }
 .get-company-code {
   margin-bottom: 50px;
+}
+.company-result {
+  max-width: 400px;
+  display: flex;
+  flex-direction: row;
+}
+
+.address > div {
+  flex-direction: column;
+  margin: 10px;
 }
 </style>
