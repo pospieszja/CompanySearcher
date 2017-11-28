@@ -17,6 +17,10 @@ namespace CompaniesSearcher.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery]string companyCode)
         {
+            if(string.IsNullOrWhiteSpace(companyCode))
+            {
+                return NotFound();
+            }
             var company = await _companyService.GetByCompanyCodeAsync(companyCode);
             if (company == null)
             {
