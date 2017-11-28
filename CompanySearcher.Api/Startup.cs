@@ -32,7 +32,7 @@ namespace CompanySearcher.Api
             services.AddMvc();
             services.AddCors();
             services.AddDbContext<ApplicationDbContext>
-                (options => options.UseSqlServer("Data Source=172.17.0.1,1401;Database=CompanySearcher;User ID=SA;Password=secret1234!"));
+                (options => options.UseSqlServer((Configuration.GetSection("ConnectionString:DefaultConnection")).Value));
 
             services.AddSingleton(AutoMapperConfig.Initialize());
             services.AddScoped<IDbInitializer, DbInitializer>();                
