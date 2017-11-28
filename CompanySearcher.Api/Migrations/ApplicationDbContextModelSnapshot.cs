@@ -35,7 +35,7 @@ namespace CompanySearcher.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("CompanySearcher.Api.Models.Company", b =>

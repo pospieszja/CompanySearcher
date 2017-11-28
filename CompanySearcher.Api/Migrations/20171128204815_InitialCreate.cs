@@ -9,7 +9,7 @@ namespace CompanySearcher.Api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: "Addresses",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -20,7 +20,7 @@ namespace CompanySearcher.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Address", x => x.Id);
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -28,8 +28,13 @@ namespace CompanySearcher.Api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    AcceptLanguage = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
-                    Query = table.Column<string>(nullable: true),
+                    Host = table.Column<string>(nullable: true),
+                    Method = table.Column<string>(nullable: true),
+                    Origin = table.Column<string>(nullable: true),
+                    Path = table.Column<string>(nullable: true),
+                    QueryString = table.Column<string>(nullable: true),
                     UserAgent = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -52,9 +57,9 @@ namespace CompanySearcher.Api.Migrations
                 {
                     table.PrimaryKey("PK_Companies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Companies_Address_AddressId",
+                        name: "FK_Companies_Addresses_AddressId",
                         column: x => x.AddressId,
-                        principalTable: "Address",
+                        principalTable: "Addresses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -74,7 +79,7 @@ namespace CompanySearcher.Api.Migrations
                 name: "Logs");
 
             migrationBuilder.DropTable(
-                name: "Address");
+                name: "Addresses");
         }
     }
 }

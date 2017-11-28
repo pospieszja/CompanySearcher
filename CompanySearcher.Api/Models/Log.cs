@@ -14,6 +14,11 @@ namespace CompanySearcher.Api.Models
         public string Host { get; private set; }
         public string Origin { get; private set; }
 
+        protected Log()
+        {
+
+        }
+        
         public Log(string method, string path, string queryString, string userAgent, string acceptLanguage, string host, string origin)
         {
             Id = Guid.NewGuid();

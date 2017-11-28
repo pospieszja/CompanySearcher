@@ -20,10 +20,10 @@ namespace CompanySearcher.Api.Services
         }
 
         public async Task<CompanyViewModel> GetByCompanyCodeAsync(string companyCode)
-        {   
+        {
             companyCode = Regex.Replace(companyCode, @"[^0-9]", "");
             var company = await _repository.GetByCompanyCodeAsync(companyCode);
-            return _mapper.Map<Company,CompanyViewModel>(company);
+            return _mapper.Map<Company, CompanyViewModel>(company);
         }
     }
 }

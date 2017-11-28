@@ -25,7 +25,6 @@ namespace CompaniesSearcher.Api.Controllers
                 return NotFound();
             }
             var company = await _companyService.GetByCompanyCodeAsync(companyCode);
-            var header = Request;
             await _logService.Add(Request.Method, Request.Path, Request.QueryString.Value,
                                 Request.Headers["User-Agent"], Request.Headers["Accept-Language"],
                                 Request.Headers["Host"], Request.Headers["Origin"]);

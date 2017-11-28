@@ -12,8 +12,8 @@ namespace CompanySearcher.Api.Repositories
         {
             _context = context;
         }
-        
-        public async Task Add(Log log)
+
+        public async Task AddAsync(Log log)
         {
             _context.Add(log);
             await _context.SaveChangesAsync();

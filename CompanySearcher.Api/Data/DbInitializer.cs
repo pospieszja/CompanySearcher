@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CompanySearcher.Api.Models;
 
 namespace CompanySearcher.Api.Data
@@ -13,7 +14,7 @@ namespace CompanySearcher.Api.Data
             _context = context;
         }
 
-        public void Initialize()
+        public async Task Initialize()
         {
             if (!_context.Companies.Any())
             {
@@ -29,7 +30,7 @@ namespace CompanySearcher.Api.Data
                 company = new Company("SONY EUROPE LIMITED (SP Z O O) ODDZIAŁ W POLSCE", "377489", "1080010359", "142798947", address);
                 _context.Companies.Add(company);                
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
         }
     }

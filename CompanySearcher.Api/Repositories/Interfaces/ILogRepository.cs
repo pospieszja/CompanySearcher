@@ -5,6 +5,6 @@ namespace CompanySearcher.Api.Repositories.Interfaces
 {
     public interface ILogRepository
     {
-        Task Add(Log log);
+        Task AddAsync(Log log);
     }
 }

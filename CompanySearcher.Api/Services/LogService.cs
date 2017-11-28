@@ -18,7 +18,7 @@ namespace CompanySearcher.Api.Services
         public async Task Add(string method, string path, string queryString, string userAgent, string acceptLanguage, string host, string origin)
         {
             var log = new Log(method, path, queryString, userAgent, acceptLanguage, host, origin);
-            await _repository.Add(log);
+            await _repository.AddAsync(log);
         }
     }
 }

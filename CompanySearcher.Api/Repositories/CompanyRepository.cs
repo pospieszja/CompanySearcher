@@ -15,11 +15,11 @@ namespace CompanySearcher.Api.Repositories
             _context = context;
         }
 
-        public Task<Company> GetByCompanyCodeAsync(string companyCode)
+        public async Task<Company> GetByCompanyCodeAsync(string companyCode)
         {
-            return _context.Companies
-                    .Include(e=>e.Address)
-                    .SingleOrDefaultAsync(x=>x.KRS == companyCode || x.NIP == companyCode || x.REGON == companyCode);
+            return await _context.Companies
+                    .Include(e => e.Address)
+                    .SingleOrDefaultAsync(x => x.KRS == companyCode || x.NIP == companyCode || x.REGON == companyCode);
         }
     }
 }
