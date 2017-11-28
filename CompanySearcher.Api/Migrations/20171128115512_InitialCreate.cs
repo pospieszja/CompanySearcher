@@ -9,7 +9,7 @@ namespace CompanySearcher.Api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Addresses",
+                name: "Address",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -20,7 +20,21 @@ namespace CompanySearcher.Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Addresses", x => x.Id);
+                    table.PrimaryKey("PK_Address", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Logs",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Query = table.Column<string>(nullable: true),
+                    UserAgent = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Logs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -38,9 +52,9 @@ namespace CompanySearcher.Api.Migrations
                 {
                     table.PrimaryKey("PK_Companies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Companies_Addresses_AddressId",
+                        name: "FK_Companies_Address_AddressId",
                         column: x => x.AddressId,
-                        principalTable: "Addresses",
+                        principalTable: "Address",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -57,7 +71,10 @@ namespace CompanySearcher.Api.Migrations
                 name: "Companies");
 
             migrationBuilder.DropTable(
-                name: "Addresses");
+                name: "Logs");
+
+            migrationBuilder.DropTable(
+                name: "Address");
         }
     }
 }

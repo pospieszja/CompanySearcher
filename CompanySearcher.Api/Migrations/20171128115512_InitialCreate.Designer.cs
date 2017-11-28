@@ -11,7 +11,7 @@ using System;
 namespace CompanySearcher.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171127210159_InitialCreate")]
+    [Migration("20171128115512_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,7 +36,7 @@ namespace CompanySearcher.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Address");
                 });
 
             modelBuilder.Entity("CompanySearcher.Api.Models.Company", b =>
@@ -59,6 +59,22 @@ namespace CompanySearcher.Api.Migrations
                     b.HasIndex("AddressId");
 
                     b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("CompanySearcher.Api.Models.Log", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("Query");
+
+                    b.Property<string>("UserAgent");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("CompanySearcher.Api.Models.Company", b =>
