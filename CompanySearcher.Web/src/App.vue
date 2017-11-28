@@ -51,8 +51,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "app",
   data() {
@@ -81,10 +79,8 @@ export default {
     fetch() {
       this.resetModel();
       this.fetched = true;
-      axios
-        .get(
-          "http://localhost:5000/api/companies?companycode=" + this.companyCode
-        )
+      this.axios
+        .get("/companies",{params: {companyCode: this.companyCode}})
         .then(response => {
           this.company = response.data;
           this.notFound = false;
