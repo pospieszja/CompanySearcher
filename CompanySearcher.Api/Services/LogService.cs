@@ -15,9 +15,9 @@ namespace CompanySearcher.Api.Services
             _repository = repository;
         }
 
-        public async Task Add(string query, string userAgent)
+        public async Task Add(string method, string path, string queryString, string userAgent, string acceptLanguage, string host, string origin)
         {
-            var log = new Log(query, userAgent);
+            var log = new Log(method, path, queryString, userAgent, acceptLanguage, host, origin);
             await _repository.Add(log);
         }
     }
